@@ -1,0 +1,118 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Lavanya C S",
+      "email": "lavanya@example.com",
+      "password": "123456",
+      "worklogs": [
+        {
+          "id": "1751697298804",
+          "date": "2025-07-01",
+          "exercise": "Pushups",
+          "duration": "20",
+          "notes": "Morning session"
+        },
+        {
+          "id": "1761697298804",
+          "date": "2025-07-02",
+          "exercise": "Running",
+          "duration": "30",
+          "notes": "Evening run"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "LavanyaNew",
+      "email": "lavanyanew@example.com",
+      "password": "abcdefgh",
+      "worklogs": [
+        {
+          "id": "1751697298804",
+          "date": "2025-07-01",
+          "exercise": "Pushups",
+          "duration": "25",
+          "notes": "Morning sessions"
+        },
+        {
+          "id": "1761697298804",
+          "date": "2025-07-02",
+          "exercise": "Running",
+          "duration": "30",
+          "notes": "Evening runn"
+        },
+        {
+          "date": "2025-07-05",
+          "exercise": "Cycling",
+          "duration": "20",
+          "notes": "cycling",
+          "id": "1751735196234"
+        },
+        {
+          "date": "2025-07-05",
+          "exercise": "Swimming",
+          "duration": "60",
+          "notes": "Swiming to get fit",
+          "id": "1751735217746"
+        },
+        {
+          "date": "2025-07-04",
+          "exercise": "Running",
+          "duration": "30",
+          "notes": "Running to reduce calories",
+          "id": "1751735250566"
+        },
+        {
+          "date": "2025-07-03",
+          "exercise": "Yoga",
+          "duration": "30",
+          "notes": "Yoga Medi",
+          "id": "1751735270859"
+        },
+        {
+          "date": "2025-07-03",
+          "exercise": "Strength Training",
+          "duration": "45",
+          "notes": "Training in Gym",
+          "id": "1751735292612"
+        },
+        {
+          "date": "2025-07-01",
+          "exercise": "Walking",
+          "duration": "50",
+          "notes": "216 calories ",
+          "id": "1751735314350"
+        }
+      ]
+    },
+    {
+      "id": "1751697298804",
+      "name": "Ovya",
+      "email": "ovya@example.com",
+      "password": "ovyaezhil52",
+      "worklogs": [
+        {
+          "id": "1751697298804",
+          "date": "2025-07-01",
+          "exercise": "Pushups",
+          "duration": "20",
+          "notes": "Morning session"
+        },
+        {
+          "id": "1761697298804",
+          "date": "2025-07-02",
+          "exercise": "Running",
+          "duration": "30",
+          "notes": "Evening run"
+        }
+      ]
+    },
+    {
+      "id": "1751719838447",
+      "name": "Lavanya CS",
+      "email": "lavanya@ovya.com",
+      "password": "hello123"
+    }
+  ]
+}
