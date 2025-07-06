@@ -42,7 +42,7 @@ function Sidebarmenu() {
             { label: 'Work Log', to: '/work-log' },
             { label: 'Goals', to: '/goals' },
             { label: 'Profile', to: '/profile' },
-            { label: 'Logout', to: '/logout', extra: 'text-red-400' },
+            { label: 'Logout', to: '/logout' },
           ].map(({ label, to, extra = '' }) => (
             <li key={to}>
               <NavLink

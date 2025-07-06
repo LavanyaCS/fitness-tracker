@@ -47,25 +47,25 @@ const [showModal, setShowModal] = useState(false);
       const userRes = await axios.get(`http://localhost:5000/users/${user.id}`);
       const fullUser = userRes.data;
       const currentLogs = fullUser.worklogs || [];
-      let updatedLogs;
+      let editdLogs;
 
       if (editId) {
-        const updatedLog = { ...formData, id: editId.toString() };
-        updatedLogs = currentLogs.map((log) =>
-          log.id.toString() === editId.toString() ? updatedLog : log
+        const editdLog = { ...formData, id: editId.toString() };
+        editdLogs = currentLogs.map((log) =>
+          log.id.toString() === editId.toString() ? editdLog : log
         );
-        dispatch(editWorklogsAction(updatedLog));
+        dispatch(editWorklogsAction(editdLog));
       } else {
         const newLog = { ...formData, id: Date.now().toString() };
-        updatedLogs = [...currentLogs, newLog];
+        editdLogs = [...currentLogs, newLog];
         dispatch(addWorklogsAction(newLog));
       }
 
-      const updatedUser = { ...fullUser, 
-        worklogs: updatedLogs };
+      const editdUser = { ...fullUser, 
+        worklogs: editdLogs };
 
-      await axios.patch(`http://localhost:5000/users/${user.id}`, updatedUser);
-      dispatch({ type: 'LOGIN', payload: updatedUser });
+      await axios.patch(`http://localhost:5000/users/${user.id}`, editdUser);
+      dispatch({ type: 'LOGIN', payload: editdUser });
 
       setFormData({ date: '', exercise: '', duration: '', notes: '' });
       setEditId(null);
@@ -86,13 +86,13 @@ const [showModal, setShowModal] = useState(false);
     try {
       const userRes = await axios.get(`http://localhost:5000/users/${user.id}`);
       const fullUser = userRes.data;
-      const updatedLogs = (fullUser.worklogs || []).filter(
+      const editdLogs = (fullUser.worklogs || []).filter(
         (log) => log.id.toString() !== id.toString()
       );
-      const updatedUser = { ...fullUser, worklogs: updatedLogs };
+      const editdUser = { ...fullUser, worklogs: editdLogs };
 
-      await axios.patch(`http://localhost:5000/users/${user.id}`, updatedUser);
-      dispatch({ type: 'LOGIN', payload: updatedUser });
+      await axios.patch(`http://localhost:5000/users/${user.id}`, editdUser);
+      dispatch({ type: 'LOGIN', payload: editdUser });
       dispatch(deleteWorklogsAction(id));
       fetchWorklogs();
     } catch (error) {
@@ -105,7 +105,7 @@ const [showModal, setShowModal] = useState(false);
       <div className="text-center mt-10 text-gray-600">
         Please log in to view your worklog.
         <p className="text-sm text-center">{' '}
-  <Link to="/" className="text-blue-600 hover:underline">
+  <Link to="/" className="text-gray-600 hover:underline">
     Login
   </Link>
 </p> 
@@ -131,7 +131,7 @@ const [showModal, setShowModal] = useState(false);
       setEditId(null);
     }}
     >
-    <div className="shadow-md  w-full relative backdrop-blur-md bg-white/20 p-6 rounded max-w-2xl border border-blue-500/30"
+    <div className="shadow-md  w-full relative backdrop-blur-md bg-white/20 p-6 rounded max-w-2xl border border-gray-500/30"
     onClick={(e) => e.stopPropagation()}>
       {/* Close Button */}
       <button
@@ -178,8 +178,8 @@ const [showModal, setShowModal] = useState(false);
           value={formData.notes}
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
         />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          {editId ? 'Update Log' : 'Add Log'}
+        <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+          {editId ? 'Edit Log' : 'Add Log'}
         </button>
       </form>
       </div></div>
@@ -208,7 +208,7 @@ const [showModal, setShowModal] = useState(false);
                 <td className="p-2 space-x-2">
                   <button
                     onClick={() => handleEdit(log)}
-                    className="text-blue-600 hover:underline"
+                    className="text-gray-600 hover:underline"
                   >
                     Edit
                   </button>

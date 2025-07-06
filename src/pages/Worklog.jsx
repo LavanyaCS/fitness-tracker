@@ -75,25 +75,25 @@ const logsForSelectedDate = worklogs.filter(
       const userRes = await axios.get(`http://localhost:5000/users/${user.id}`);
       const fullUser = userRes.data;
       const currentLogs = fullUser.worklogs || [];
-      let updatedLogs;
+      let editdLogs;
 
       if (editId) {
-        const updatedLog = { ...formData, id: editId.toString() };
-        updatedLogs = currentLogs.map((log) =>
-          log.id.toString() === editId.toString() ? updatedLog : log
+        const editdLog = { ...formData, id: editId.toString() };
+        editdLogs = currentLogs.map((log) =>
+          log.id.toString() === editId.toString() ? editdLog : log
         );
-        dispatch(editWorklogsAction(updatedLog));
+        dispatch(editWorklogsAction(editdLog));
       } else {
         const newLog = { ...formData, id: Date.now().toString() };
-        updatedLogs = [...currentLogs, newLog];
+        editdLogs = [...currentLogs, newLog];
         dispatch(addWorklogsAction(newLog));
       }
 
-      const updatedUser = { ...fullUser, 
-        worklogs: updatedLogs };
+      const editdUser = { ...fullUser, 
+        worklogs: editdLogs };
 
-      await axios.patch(`http://localhost:5000/users/${user.id}`, updatedUser);
-      dispatch({ type: 'LOGIN', payload: updatedUser });
+      await axios.patch(`http://localhost:5000/users/${user.id}`, editdUser);
+      dispatch({ type: 'LOGIN', payload: editdUser });
 
       setFormData({ date: '', exercise: '', duration: '', notes: '' });
       setEditId(null);
@@ -114,13 +114,13 @@ const logsForSelectedDate = worklogs.filter(
     try {
       const userRes = await axios.get(`http://localhost:5000/users/${user.id}`);
       const fullUser = userRes.data;
-      const updatedLogs = (fullUser.worklogs || []).filter(
+      const editdLogs = (fullUser.worklogs || []).filter(
         (log) => log.id.toString() !== id.toString()
       );
-      const updatedUser = { ...fullUser, worklogs: updatedLogs };
+      const editdUser = { ...fullUser, worklogs: editdLogs };
 
-      await axios.patch(`http://localhost:5000/users/${user.id}`, updatedUser);
-      dispatch({ type: 'LOGIN', payload: updatedUser });
+      await axios.patch(`http://localhost:5000/users/${user.id}`, editdUser);
+      dispatch({ type: 'LOGIN', payload: editdUser });
       dispatch(deleteWorklogsAction(id));
       fetchWorklogs();
     } catch (error) {
@@ -133,7 +133,7 @@ const logsForSelectedDate = worklogs.filter(
       <div className="mt-10 text-center text-gray-600">
         Please log in to view your worklog.
         <p className="text-sm text-center">{' '}
-  <Link to="/" className="text-blue-600 hover:underline">
+  <Link to="/" className="text-gray-600 hover:underline">
     Login
   </Link>
 </p> 
@@ -142,7 +142,8 @@ const logsForSelectedDate = worklogs.filter(
   }
 
   return (
-    <div className="w-full max-w-4xl p-6 mx-auto space-y-6">
+   
+    <div className="w-full max-w-5xl p-6 mx-auto space-y-6">
       <h1 className="text-2xl font-bold">Workout Log</h1>
 <div className="flex justify-end w-full">
 <button
@@ -159,8 +160,9 @@ const logsForSelectedDate = worklogs.filter(
       setEditId(null);
     }}
     >
-    <div className="relative w-full max-w-2xl p-6 border rounded shadow-md backdrop-blur-md bg-white/20 border-blue-500/30"
+    <div className="relative w-full max-w-2xl p-6 border rounded shadow-md backdrop-blur-md bg-white/20 border-gray-500/30"
     onClick={(e) => e.stopPropagation()}>
+      <span className="flex justify-start text-xl font-medium text-gray-900"> {editId ? 'Edit Log' : 'Add Log'}</span>
       {/* Close Button */}
       <button
         onClick={() => {
@@ -214,8 +216,8 @@ const logsForSelectedDate = worklogs.filter(
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
         />
         <div className="flex justify-end">
-        <button className="flex justify-end px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-          {editId ? 'Update Log' : 'Add Log'}
+        <button className="flex justify-end px-4 py-2 text-white bg-gray-800 rounded hover:bg-gray-600">
+          {editId ? 'Edit Log' : 'Add Log'}
         </button></div>
       </form>
       </div></div>

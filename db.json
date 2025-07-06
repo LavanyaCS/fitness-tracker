@@ -5,6 +5,10 @@
       "name": "Lavanya C S",
       "email": "lavanya@example.com",
       "password": "123456",
+      "gender": "Female",
+      "age": 26,
+      "targetSteps": 8000,
+      "totalWeight": "58kg",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -27,6 +31,11 @@
       "name": "LavanyaNew",
       "email": "lavanyanew@example.com",
       "password": "abcdefgh",
+      "gender": "Female",
+      "age": 32,
+      "targetSteps": 8000,
+      "totalWeight": "68kg",
+      "targetWeight": "50kg",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -91,6 +100,11 @@
       "name": "Ovya",
       "email": "ovya@example.com",
       "password": "ovyaezhil52",
+      "gender": "Female",
+      "age": 16,
+      "targetSteps": 8000,
+      "totalWeight": "25kg",
+      "targetWeight": "28kg",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -106,7 +120,19 @@
           "duration": "30",
           "notes": "Evening run"
         }
-      ]
+      ],
+    "weightlogs": [
+    {
+      "id": 1,
+      "weight": "50kg",
+      "date": "2025-07-05"
+    },
+    {
+      "id": 2,
+      "weight": "51kg",
+      "date": "2025-07-06"
+    }
+  ]
     },
     {
       "id": "1751719838447",
