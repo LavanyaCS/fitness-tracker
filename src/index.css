@@ -4,3 +4,9 @@
 .react-calendar__tile.bg-green-300 {
   background-color: #86efac !important;
 }
+.bg-image{
+  background: url('assets/home.png');
+}
+button{
+  cursor: pointer;
+}

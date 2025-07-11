@@ -8,7 +8,7 @@
       "gender": "Female",
       "age": 26,
       "targetSteps": 8000,
-      "totalWeight": "58kg",
+      "totalWeight": "58",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -23,6 +23,25 @@
           "exercise": "Running",
           "duration": "30",
           "notes": "Evening run"
+        },
+        {
+          "date": "2025-07-07",
+          "exercise": "Running",
+          "duration": "45",
+          "notes": "notes",
+          "id": "1751869405308"
+        }
+      ],
+      "weightlogs": [
+        {
+          "id": 1751877434324,
+          "weight": 32,
+          "date": "2025-01-01"
+        },
+        {
+          "id": 1751877463361,
+          "weight": 89,
+          "date": "2024-12-31"
         }
       ]
     },
@@ -32,10 +51,10 @@
       "email": "lavanyanew@example.com",
       "password": "abcdefgh",
       "gender": "Female",
-      "age": 32,
-      "targetSteps": 8000,
-      "totalWeight": "68kg",
-      "targetWeight": "50kg",
+      "age": "30",
+      "targetSteps": "7000",
+      "totalWeight": "68",
+      "targetWeight": "50",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -92,8 +111,42 @@
           "duration": "50",
           "notes": "216 calories ",
           "id": "1751735314350"
+        },
+        {
+          "date": "2025-07-07",
+          "exercise": "Running",
+          "duration": "35",
+          "notes": "Running",
+          "id": "1751863696414"
+        },
+        {
+          "date": "2025-07-05",
+          "exercise": "Cycling",
+          "duration": "56",
+          "notes": "44",
+          "id": "1751868465544"
+        },
+        {
+          "date": "2025-07-11",
+          "exercise": "Running",
+          "duration": "34",
+          "notes": "Notes for demo",
+          "id": "1752147362348"
         }
-      ]
+      ],
+      "weightlogs": [
+        {
+          "id": 1,
+          "weight": "50",
+          "date": "2025-07-05"
+        },
+        {
+          "id": 2,
+          "weight": "51",
+          "date": "2025-07-06"
+        }
+      ],
+      "currentWeight": "58"
     },
     {
       "id": "1751697298804",
@@ -103,8 +156,8 @@
       "gender": "Female",
       "age": 16,
       "targetSteps": 8000,
-      "totalWeight": "25kg",
-      "targetWeight": "28kg",
+      "currentWeight": "25",
+      "targetWeight": "28",
       "worklogs": [
         {
           "id": "1751697298804",
@@ -121,24 +174,33 @@
           "notes": "Evening run"
         }
       ],
-    "weightlogs": [
-    {
-      "id": 1,
-      "weight": "50kg",
-      "date": "2025-07-05"
+      "weightlogs": [
+        {
+          "id": 1,
+          "weight": "50",
+          "date": "2025-07-05",
+          "notes": "hello"
+        },
+        {
+          "id": 2,
+          "weight": "51",
+          "date": "2025-07-06"
+        }
+      ]
     },
     {
-      "id": 2,
-      "weight": "51kg",
-      "date": "2025-07-06"
-    }
-  ]
-    },
-    {
-      "id": "1751719838447",
-      "name": "Lavanya CS",
-      "email": "lavanya@ovya.com",
-      "password": "hello123"
+      "id": "1752212404500",
+      "name": "lavanya",
+      "email": "newlavanyanew@example.com",
+      "password": "abcdefgh",
+      "gender": "Trans",
+      "age": "45",
+      "targetSteps": "4555",
+      "totalWeight": "",
+      "targetWeight": "60",
+      "worklogs": [],
+      "weightlogs": [],
+      "currentWeight": "80"
     }
   ]
 }

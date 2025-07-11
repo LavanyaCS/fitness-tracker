@@ -20,7 +20,7 @@ function Thememode() {
     <div>
      <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 px-4 py-2 text-sm rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white z-50"
+      className="fixed z-50 px-4 py-2 text-sm text-black bg-gray-200 rounded-lg bottom-4 lef t-4 dark:bg-gray-800 dark:text-white"
     >
       {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
     </button></div>

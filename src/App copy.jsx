@@ -11,7 +11,7 @@ function App() {
  
 
   return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-50">
         <AuthForm />
         <div className="sidebar w-48">
           <Sidebarmenu />
@@ -19,7 +19,7 @@ function App() {
         <div className="flex-1 ">
           <Routes>
             <Route to="/"  element={<Dashboard />}></Route>
-            <Route to="/work-tracker" element={<Worktracker />}></Route>
+            <Route to="/weight-tracker" element={<Worktracker />}></Route>
             <Route to="/Goals" element={<Goals />}></Route>
             <Route to="/Profile" element={<Profile />}></Route>
             <Route to="/work-log" element={<Worklog />}></Route>

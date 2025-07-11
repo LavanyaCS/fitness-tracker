@@ -10,11 +10,7 @@ const Logout = () => {
   useEffect(() => {
     // 1. Clear redux user
     dispatch(logout());
-
-    // 2. Optional: clear local/session storage
-    localStorage.removeItem('user'); // if you're using localStorage for session
-    sessionStorage.removeItem('user'); // if you're using sessionStorage
-
+      localStorage.removeItem("fitnessUser"); 
     // 3. Redirect to login
     navigate('/');
   }, [dispatch, navigate]);

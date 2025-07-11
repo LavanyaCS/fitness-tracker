@@ -1,4 +1,4 @@
-import { GET_WEIGHTLOGS, ADD_WEIGHTLOGS ,EDIT_WEIGHTLOGS,DELETE_WEIGHTLOGS } from '../action';
+import { GET_WEIGHTLOGS, ADD_WEIGHTLOGS ,EDIT_WEIGHTLOGS,DELETE_WEIGHTLOGS,LOAD_WEIGHTLOGS } from '../action';
 // Initial state for the weightklogs
 const initialState = {
   weightlogs: [],
@@ -11,6 +11,9 @@ const weightlogsReducer = (state = initialState, action) => {
 
     case 'ADD_WEIGHTLOGS':
       return { ...state, weightlogs: [...state.weightlogs, action.payload] };
+
+    case 'LOAD_WEIGHTLOGS':
+      return { ...state, weightlogs: action.payload};
 
     case 'EDIT_WEIGHTLOGS':
       return {

@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 function Worklog() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const worklogs = useSelector((state) => state.worklogs.worklogs);
+  const worklogs = useSelector((state) => state.worklog.worklogs);
 const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     date: '',
@@ -119,7 +119,7 @@ const [showModal, setShowModal] = useState(false);
 <div className="w-full flex justify-end">
 <button
   onClick={() => setShowModal(true)}
-  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+  className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
 >
   + Add Log
 </button></div>
@@ -131,7 +131,7 @@ const [showModal, setShowModal] = useState(false);
       setEditId(null);
     }}
     >
-    <div className="shadow-md  w-full relative backdrop-blur-md bg-white/20 p-6 rounded max-w-2xl border border-gray-500/30"
+    <div className="shadow-md  w-full relative backdrop-blur-md bg-white/80 p-6 rounded-lg max-w-2xl border border-gray-500/30"
     onClick={(e) => e.stopPropagation()}>
       {/* Close Button */}
       <button
@@ -178,7 +178,7 @@ const [showModal, setShowModal] = useState(false);
           value={formData.notes}
           onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
         />
-        <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+        <button className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
           {editId ? 'Edit Log' : 'Add Log'}
         </button>
       </form>
@@ -188,9 +188,9 @@ const [showModal, setShowModal] = useState(false);
       {worklogs.length === 0 ? (
         <p className="text-gray-600 text-center mt-4">No logs yet.</p>
       ) : (
-        <table className="w-full text-left bg-white rounded shadow">
+        <table className="w-full text-left bg-white rounded-lg shadow">
           <thead>
-            <tr className="bg-gray-100 border-b">
+            <tr className="bg-gray-50 border-b">
               <th className="p-2">Date</th>
               <th className="p-2">Exercise</th>
               <th className="p-2">Duration</th>
