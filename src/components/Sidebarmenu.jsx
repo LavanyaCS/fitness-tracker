@@ -39,7 +39,7 @@ function Sidebarmenu() {
         <ul className="space-y-2">
           {[
             { label: 'Dashboard', to: '/dashboard' },
-            { label: 'Work Tracker', to: '/weight-tracker' },
+            { label: 'Weight Tracker', to: '/weight-tracker' },
             { label: 'Work Log', to: '/work-log' },
             { label: 'Goals', to: '/goals' },
             { label: 'Profile', to: '/profile' },
@@ -50,7 +50,7 @@ function Sidebarmenu() {
                 to={to}
                 className={({ isActive }) =>
                   `block p-2 rounded-lg transition ${
-                    isActive ? 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white  font-semibold' : 'hover:bg-gray-200 hover:dark:bg-gray-700 text-gray-800 dark:text-white'
+                    isActive ? 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white  font-semibold' : 'hover:bg-gray-200 hover:dark:bg-gray-700 text-gray-800 dark:text-white'
                   } ${extra}`
                 }
                 onClick={() => setIsOpen(false)}

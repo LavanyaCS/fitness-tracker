@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addWeightlogsAction, editWeightlogsAction } from '../../redux/action';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
+  const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formWeightTracker, setFormWeightTracker] = useState({
     weight: '',
     date: '',
-    notes:''
+    notes: ''
   });
-  const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
+ 
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (editWeightTracker) {
-      setShowModal(true); // auto open modal if editing
+      setShowModal(true);
       setFormWeightTracker({
         weight: editWeightTracker.weight.toString(),
         date: editWeightTracker.date,
@@ -31,32 +31,63 @@ function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newLog = {
-      id: editWeightTracker?.id || Date.now(),
-      weight: parseFloat(formWeightTracker.weight),
-      date: formWeightTracker.date,
-      notes: formWeightTracker.notes,
-    };
-
-    if (editWeightTracker) {
-      dispatch(editWeightlogsAction(newLog));
-      toast.success('Weight log updated!', { position: 'top-center' });
-      setEditWeightTracker(null);
-    } else {
-      dispatch(addWeightlogsAction(newLog));
-      toast.success('Weight log added!', { position: 'top-center' });
+    if (parseFloat(formWeightTracker.weight) <= 0) {
+      toast.error('Weight must be greater than 0.');
+      return;
+    }
+    if (new Date(formWeightTracker.date) > new Date()) {
+      toast.error('Date cannot be in the future.');
+      return;
     }
 
-    setShowModal(false);
-    setFormWeightTracker({ weight: '', date: '', notes:'' });
+    setIsLoading(true);
+    try {
+      const res = await fetch(`http://localhost:5000/users/${user.id}`);
+      const userData = await res.json();
+
+      const newLog = {
+        ...formWeightTracker,
+        id: editWeightTracker?.id || Date.now().toString(),
+      };
+
+      let updatedWeightLogs = [];
+
+      if (editWeightTracker) {
+        updatedWeightLogs = userData.weightlogs.map(log =>
+          log.id === newLog.id ? newLog : log
+        );
+        toast.success('Weight log updated!', { position: 'top-center' });
+      } else {
+        updatedWeightLogs = [...(userData.weightlogs || []), newLog];
+        toast.success('Weight log added!', { position: 'top-center' });
+      }
+
+      const updatedUser = { ...userData, weightlogs: updatedWeightLogs };
+
+      await fetch(`http://localhost:5000/users/${user.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedUser),
+      });
+      // Update localStorage and Redux for immediate reflection in UI
+localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
+dispatch({ type: "LOGIN", payload: updatedUser });
+
+      closeModal();
+    } catch (error) {
+      console.error('Error updating weight logs:', error);
+      toast.error('Error updating weight log.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setFormWeightTracker({ weight: '', date: '', notes:'' });
+    setFormWeightTracker({ weight: '', date: '', notes: '' });
     setEditWeightTracker(null);
   };
 
@@ -71,87 +102,86 @@ function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
 
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center h-screen px-4 text-center bg-center bg-cover bg-black/30"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/30"
           onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-2xl px-6 py-4 border rounded-lg shadow-md backdrop-blur-md bg-white/80 border-gray-500/30"
+            className="relative w-full max-w-2xl p-6 bg-white rounded-lg shadow-md"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="flex justify-start text-xl font-medium text-gray-900">
+            <span className="text-xl font-semibold">
               {editWeightTracker ? 'Edit Weight Log' : 'Add Weight Log'}
             </span>
             <button
               onClick={closeModal}
-              className="absolute text-2xl text-gray-500 top-2 right-2 hover:text-black"
+              className="absolute text-2xl text-gray-500 top-2 right-4 hover:text-black"
             >
               &times;
             </button>
 
-              <ToastContainer />
-              <form
-                onSubmit={handleSubmit}
-                className="mt-4 space-y-4"
-              >
+            <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+              <div>
+                <label htmlFor="weight" className="block mb-1 font-medium">
+                  Weight (Kg)
+                </label>
+                <input
+                  name="weight"
+                  type="number"
+                  className="w-full p-2 border rounded"
+                  placeholder="Enter your weight"
+                  value={formWeightTracker.weight}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                <div>
-                  <label htmlFor="weight" className="block mb-1 font-medium text-left">
-                    Weight (Kg)
-                  </label>
-                  <input
-                    name="weight"
-                    type="number"
-                    className="w-full p-2 border rounded"
-                    placeholder="Enter your weight"
-                    value={formWeightTracker.weight}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+              <div>
+                <label htmlFor="date" className="block mb-1 font-medium">
+                  Date
+                </label>
+                <input
+                  name="date"
+                  type="date"
+                  className="w-full p-2 border rounded"
+                  value={formWeightTracker.date}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                <div>
-                  <label htmlFor="date" className="block mb-1 font-medium text-left">
-                    Date
-                  </label>
-                  <input
-                    name="date"
-                    type="date"
-                    className="w-full p-2 border rounded"
-                    value={formWeightTracker.date}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="notes" className="block mb-1 font-medium text-left">
-                    Notes
-                  </label>
-                  <textarea
-                    name="notes" rows="3"
-                    className="w-full p-2 border rounded"
-                    value={formWeightTracker.notes}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="flex justify-end w-full gap-4 pt-2">
-                  <button
-                    type="submit"
-                    className="px-4 py-2 text-white bg-gray-800 rounded-lg w-fit hover:bg-gray-700"
-                  >
-                    {editWeightTracker ? 'Update' : 'Add'}
-                  </button>
+              <div>
+                <label htmlFor="notes" className="block mb-1 font-medium">
+                  Notes
+                </label>
+                <textarea
+                  name="notes"
+                  rows="3"
+                  className="w-full p-2 border rounded"
+                  value={formWeightTracker.notes}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                    <button
-                      type="button"
-                      className="px-4 py-2 text-white bg-gray-500 rounded-lg w-fit hover:bg-gray-600"
-                      onClick={closeModal}
-                    >
-                      Cancel                   </button>
-                </div>
-              </form>
-            
+              <div className="flex justify-end gap-4 pt-2">
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`px-4 py-2 text-white rounded-lg ${
+                    isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'
+                  }`}
+                >
+                  {isLoading ? 'Saving...' : editWeightTracker ? 'Update' : 'Add'}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

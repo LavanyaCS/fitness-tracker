@@ -1,206 +1,67 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Lavanya C S",
-      "email": "lavanya@example.com",
-      "password": "123456",
-      "gender": "Female",
-      "age": 26,
-      "targetSteps": 8000,
-      "totalWeight": "58",
-      "worklogs": [
-        {
-          "id": "1751697298804",
-          "date": "2025-07-01",
-          "exercise": "Pushups",
-          "duration": "20",
-          "notes": "Morning session"
-        },
-        {
-          "id": "1761697298804",
-          "date": "2025-07-02",
-          "exercise": "Running",
-          "duration": "30",
-          "notes": "Evening run"
-        },
-        {
-          "date": "2025-07-07",
-          "exercise": "Running",
-          "duration": "45",
-          "notes": "notes",
-          "id": "1751869405308"
-        }
-      ],
-      "weightlogs": [
-        {
-          "id": 1751877434324,
-          "weight": 32,
-          "date": "2025-01-01"
-        },
-        {
-          "id": 1751877463361,
-          "weight": 89,
-          "date": "2024-12-31"
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "name": "LavanyaNew",
+      "id": "1752478868775",
+      "name": "liyana",
       "email": "lavanyanew@example.com",
       "password": "abcdefgh",
       "gender": "Female",
       "age": "30",
-      "targetSteps": "7000",
-      "totalWeight": "68",
-      "targetWeight": "50",
+      "targetSteps": "6000",
+      "totalWeight": "",
+      "targetWeight": "70",
+      "currentWeight": "80",
       "worklogs": [
         {
-          "id": "1751697298804",
-          "date": "2025-07-01",
-          "exercise": "Pushups",
-          "duration": "25",
-          "notes": "Morning sessions"
-        },
-        {
-          "id": "1761697298804",
-          "date": "2025-07-02",
+          "date": "2025-07-14",
           "exercise": "Running",
-          "duration": "30",
-          "notes": "Evening runn"
+          "duration": "67",
+          "notes": "no",
+          "id": "1752478883939"
         },
         {
-          "date": "2025-07-05",
+          "date": "2025-07-15",
           "exercise": "Cycling",
-          "duration": "20",
-          "notes": "cycling",
-          "id": "1751735196234"
+          "duration": "67",
+          "notes": "nnnn",
+          "id": "1752478907139"
         },
         {
-          "date": "2025-07-05",
+          "date": "2025-07-17",
+          "exercise": "Running",
+          "duration": "24",
+          "notes": "notes",
+          "id": "1752481961375"
+        },
+        {
+          "date": "2025-07-17",
           "exercise": "Swimming",
-          "duration": "60",
-          "notes": "Swiming to get fit",
-          "id": "1751735217746"
-        },
-        {
-          "date": "2025-07-04",
-          "exercise": "Running",
-          "duration": "30",
-          "notes": "Running to reduce calories",
-          "id": "1751735250566"
-        },
-        {
-          "date": "2025-07-03",
-          "exercise": "Yoga",
-          "duration": "30",
-          "notes": "Yoga Medi",
-          "id": "1751735270859"
-        },
-        {
-          "date": "2025-07-03",
-          "exercise": "Strength Training",
           "duration": "45",
-          "notes": "Training in Gym",
-          "id": "1751735292612"
-        },
-        {
-          "date": "2025-07-01",
-          "exercise": "Walking",
-          "duration": "50",
-          "notes": "216 calories ",
-          "id": "1751735314350"
-        },
-        {
-          "date": "2025-07-07",
-          "exercise": "Running",
-          "duration": "35",
-          "notes": "Running",
-          "id": "1751863696414"
-        },
-        {
-          "date": "2025-07-05",
-          "exercise": "Cycling",
-          "duration": "56",
-          "notes": "44",
-          "id": "1751868465544"
-        },
-        {
-          "date": "2025-07-11",
-          "exercise": "Running",
-          "duration": "34",
-          "notes": "Notes for demo",
-          "id": "1752147362348"
+          "notes": "notes",
+          "id": "1752492088250"
         }
       ],
       "weightlogs": [
         {
-          "id": 1,
-          "weight": "50",
-          "date": "2025-07-05"
-        },
-        {
-          "id": 2,
-          "weight": "51",
-          "date": "2025-07-06"
+          "weight": "45",
+          "date": "2025-01-01",
+          "notes": "45\n",
+          "id": "1752492950610"
         }
       ],
-      "currentWeight": "58"
-    },
-    {
-      "id": "1751697298804",
-      "name": "Ovya",
-      "email": "ovya@example.com",
-      "password": "ovyaezhil52",
-      "gender": "Female",
-      "age": 16,
-      "targetSteps": 8000,
-      "currentWeight": "25",
-      "targetWeight": "28",
-      "worklogs": [
+      "goals": [
         {
-          "id": "1751697298804",
-          "date": "2025-07-01",
-          "exercise": "Pushups",
-          "duration": "20",
-          "notes": "Morning session"
-        },
-        {
-          "id": "1761697298804",
-          "date": "2025-07-02",
-          "exercise": "Running",
-          "duration": "30",
-          "notes": "Evening run"
-        }
-      ],
-      "weightlogs": [
-        {
-          "id": 1,
-          "weight": "50",
-          "date": "2025-07-05",
-          "notes": "hello"
-        },
-        {
-          "id": 2,
-          "weight": "51",
-          "date": "2025-07-06"
+          "id": "1752489918098",
+          "type": "Weight",
+          "target": "70",
+          "current": "80",
+          "status": "In Progress",
+          "startDate": "2025-07-04",
+          "endDate": "2025-07-31",
+          "notes": "jj",
+          "createdAt": "2025-07-14T10:45:18.098Z"
         }
       ]
-    },
-    {
-      "id": "1752212404500",
-      "name": "lavanya",
-      "email": "newlavanyanew@example.com",
-      "password": "abcdefgh",
-      "gender": "Trans",
-      "age": "45",
-      "targetSteps": "4555",
-      "totalWeight": "",
-      "targetWeight": "60",
-      "worklogs": [],
-      "weightlogs": [],
-      "currentWeight": "80"
     }
   ]
 }

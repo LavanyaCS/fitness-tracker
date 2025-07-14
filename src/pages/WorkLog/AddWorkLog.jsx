@@ -37,21 +37,46 @@ function AddWorkLog({ editWorkLogs, setEditWorkLogs }) {
     }));
   }
   //OnSubmit
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch(`http://localhost:5000/users/${user.id}`);
+    const userData = await res.json();
+
     const newLog = {
       ...formWorkLogs,
-      id: editWorkLogs?.id || Date.now(),
+      id: editWorkLogs?.id || Date.now().toString(),
     };
+
+    let updatedWorkLogs = [];
+
     if (editWorkLogs) {
-      dispatch(editWorklogsAction(newLog));
-      toast.success('Work Log updated!', { position: 'top-center' });
+      updatedWorkLogs = userData.worklogs.map(log =>
+        log.id === newLog.id ? newLog : log
+      );
+      toast.success('Work log updated!', { position: 'top-center' });
     } else {
-      dispatch(addWorklogsAction(newLog));
-      toast.success('Work Log added!', { position: 'top-center' });
-      closeModal();
+      updatedWorkLogs = [...(userData.worklogs || []), newLog];
+      toast.success('Work log added!', { position: 'top-center' });
     }
+
+    const updatedUser = { ...userData, worklogs: updatedWorkLogs };
+
+    await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedUser),
+    });
+localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
+dispatch({ type: "LOGIN", payload: updatedUser });
+    closeModal();
+  } catch (error) {
+    console.error('Error updating work logs:', error);
+    toast.error('Error updating work log');
   }
+};
+
   const closeModal = (e) => {
     setEditWorkLogs(false);
     setShowModal(false);

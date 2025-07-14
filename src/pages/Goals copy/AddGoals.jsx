@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addGoalsAction, editGoalsAction } from '../../redux/action';
 import { toast } from 'react-toastify';
 
 function AddGoals({ editGoals, setEditGoals }) {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
   const user = useSelector((state) => state.auth.user);
 
   const [formGoals, setFormGoals] = useState({
@@ -49,6 +52,7 @@ function AddGoals({ editGoals, setEditGoals }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Basic validations
     if (!formGoals.type || !formGoals.target || !formGoals.status) {
       toast.error('Please fill in all required fields.');
       return;
@@ -64,38 +68,20 @@ function AddGoals({ editGoals, setEditGoals }) {
 
     setIsLoading(true);
 
+    const goalPayload = {
+      ...formGoals,
+      id: formGoals.id || Date.now().toString(),
+      createdAt: formGoals.createdAt || new Date().toISOString()
+    };
+
     try {
-      const res = await fetch(`http://localhost:5000/users/${user.id}`);
-      const userData = await res.json();
-
-      const newGoal = {
-        ...formGoals,
-        id: formGoals.id || Date.now().toString(),
-        createdAt: formGoals.createdAt || new Date().toISOString(),
-      };
-
-      let updatedGoals = [];
-
       if (editGoals) {
-        updatedGoals = userData.goals.map((log) =>
-          log.id === newGoal.id ? newGoal : log
-        );
+        await dispatch(editGoalsAction(goalPayload));
         toast.success('Goal updated!', { position: 'top-center' });
       } else {
-        updatedGoals = [...(userData.goals || []), newGoal];
+        await dispatch(addGoalsAction(goalPayload));
         toast.success('Goal added!', { position: 'top-center' });
       }
-
-      const updatedUser = { ...userData, goals: updatedGoals };
-
-      await fetch(`http://localhost:5000/users/${user.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedUser),
-      });
-      // Update localStorage and Redux for immediate reflection in UI
-localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
-dispatch({ type: "LOGIN", payload: updatedUser });
       closeModal();
     } catch (error) {
       console.error('Error saving goal:', error);

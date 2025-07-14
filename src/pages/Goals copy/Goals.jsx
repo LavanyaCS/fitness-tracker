@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddGoals from './AddGoals.jsx';
-import { deleteGoalsAction, login } from '../../redux/action.js';
+import { deleteGoalsAction } from '../../redux/action.js';
 import { EllipsisVertical } from 'lucide-react';
 import { toast } from 'react-toastify';
 
@@ -16,21 +16,7 @@ function Goals() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this goal?')) {
       try {
-        const res = await fetch(`http://localhost:5000/users/${user.id}`);
-        const userData = await res.json();
-
-        const updatedGoals = (userData.goals || []).filter((g) => g.id !== id);
-        const updatedUser = { ...userData, goals: updatedGoals };
-
-        await fetch(`http://localhost:5000/users/${user.id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedUser),
-        });
-      // Update localStorage and Redux for immediate reflection in UI
-localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
-dispatch({ type: "LOGIN", payload: updatedUser });
-        dispatch(login(updatedUser)); // update Redux user
+        await dispatch(deleteGoalsAction(id));
         toast.success('Goal deleted successfully!', { position: 'top-center' });
       } catch (error) {
         console.error('Error deleting goal:', error);
@@ -56,10 +42,8 @@ dispatch({ type: "LOGIN", payload: updatedUser });
     <div className="w-full max-w-5xl p-6 mx-auto space-y-6">
       <div className="flex items-center justify-between w-full">
         <div className="text-2xl font-bold">Goals Details</div>
-        <div>
-          <AddGoals editGoals={editGoals} setEditGoals={setEditGoals} />
-        </div></div>
-
+        <AddGoals editGoals={editGoals} setEditGoals={setEditGoals} />
+      </div>
 
       {sortedGoals.length === 0 ? (
         <p className="p-4 text-center text-gray-600 bg-white border rounded-lg shadow">

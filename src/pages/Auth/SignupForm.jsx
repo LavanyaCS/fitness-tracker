@@ -25,18 +25,19 @@ function SignupForm() {
     }
     //Register User
         const newUser = {
-        id: Date.now().toString(),
-        name: name,
-        email: email,
-        password: password,
-        gender: "",
-        age: "",
-        targetSteps: "",
-        totalWeight: "",
-        targetWeight: "",
-        worklogs: [],
-        weightlogs: [],
-        currentWeight: ""
+ id: Date.now().toString(),
+  name,
+  email,
+  password,
+  gender: "",
+  age: "",
+  targetSteps: "",
+  totalWeight: "",
+  targetWeight: "",
+  currentWeight: "",
+  worklogs: [],
+  weightlogs: [],
+  goals: []
       };
 
     const registerRes = await fetch('http://localhost:5000/users', {

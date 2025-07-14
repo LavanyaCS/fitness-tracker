@@ -35,7 +35,7 @@ function LoginForm() {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen px-4 text-center bg-center bg-cover bg-image">
-            <div className='w-1/2 max-w-2xl px-6 py-4 border rounded-lg xl:w-1/3 backdrop-blur-md bg-white/80 border-blue-500/30'>
+            <div className='w-1/2 max-w-2xl px-6 py-4 border rounded-lg xl:w-1/3 backdrop-blur-md bg-white/80 border-gray-500/30'>
 <form onSubmit={handleLogin} className="w-full space-y-4">
   
       <h1 className="text-2xl font-bold text-center text-gray-900">Login</h1>
@@ -62,7 +62,7 @@ function LoginForm() {
         {showPassword ? (<EyeOff />) : (<Eye />)}
         </span>
         </div>
-        <button type="submit" className="w-full py-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+        <button type="submit" className="w-full py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800">
           Login
         </button>
         <p className="text-sm text-center text-black">

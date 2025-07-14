@@ -129,7 +129,8 @@ function Worklog() {
                   </div>
 
                   {/* Kebab Menu */}
-                  <div className="absolute right-4 bottom-4">
+
+              <div className="absolute flex justify-end right-4 bottom-4">
                     <button
                       onClick={() => setOpenMenuId(openMenuId === log.id ? null : log.id)}
                       className="p-2 text-gray-600 bg-white rounded-full shadow hover:text-black"
@@ -138,8 +139,7 @@ function Worklog() {
                     </button>
 
                     {openMenuId === log.id && (
-                      <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg w-28">
-                        <button
+                  <div className="absolute right-0 z-10 mt-2 origin-top-right bg-white border rounded-lg shadow w-28 p-2">                        <button
                           onClick={() => {
                             setEditWorkLogs(log);
                             setOpenMenuId(null);

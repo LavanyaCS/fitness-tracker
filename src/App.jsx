@@ -15,7 +15,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadWeightlogsAction } from './redux/action';
 function App() {
   const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
+  const worklogs = useSelector((state) => state.auth.user?.worklogs || []);
+  const weightlogs = useSelector((state) => state.auth.user?.weight || []);
+  const goals = useSelector((state) => state.auth.user?.goal || []);
 
  return (
      <div className="flex min-h-screen transition-colors duration-300 ">

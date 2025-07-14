@@ -3,17 +3,31 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export const login = (user) => {
-  localStorage.setItem("fitnessUser", JSON.stringify(user)); 
+  localStorage.setItem("fitnessUser", JSON.stringify(user));
+
   return {
     type: "LOGIN",
     payload: user,
   };
 };
+
 export const logout = () => {
   localStorage.removeItem("fitnessUser");  
   return {
     type: "LOGOUT",
   };
+};
+export const loadUserData = (userId) => async (dispatch) => {
+  try {
+    const res = await fetch(`http://localhost:5000/users/${userId}`);
+    const userData = await res.json();
+
+    dispatch(getWorklogsAction(userData.worklogs || []));
+    dispatch(getWeightlogsAction(userData.weightlogs || []));
+    dispatch(getGoalsAction(userData.goals || []));
+  } catch (error) {
+    console.error("Error loading user data:", error);
+  }
 };
 //Workout Log Crud
 export const GET_WORKLOGS = "GET_WORKLOGS";
