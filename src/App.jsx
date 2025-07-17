@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadWeightlogsAction } from './redux/action';
+import NotFound from './pages/NotFound';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -33,6 +34,8 @@ function App() {
    {/* Public routes */}
     <Route path="/" element={<LoginForm />} />
     <Route path="/sign-up" element={<SignupForm />} />
+        <Route path="*" element={<NotFound />} />
+
   {/* Protected routes */}
     {user ? (
     <> {/* to group multiple protected routes */}

@@ -9,7 +9,7 @@ function Sidebarmenu() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const hideSidebar = ['/', '/sign-up'].includes(location.pathname);
+  const hideSidebar = ['/login', '/signup', '/not-found', '*','/'].includes(location.pathname);
 
   if (hideSidebar || !user) return null;
 
@@ -35,7 +35,7 @@ function Sidebarmenu() {
         className={`fixed top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-900  text-gray-800 dark:text-white p-4 space-y-4 z-40 transform transition-transform duration-300
           ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:block`}
       >
-        <h2 className="p-2 mb-4 text-xl font-bold">Menu</h2>
+        <h2 className="p-2 mb-4 text-xl font-bold">FitTracker</h2>
         <ul className="space-y-2">
           {[
             { label: 'Dashboard', to: '/dashboard' },
