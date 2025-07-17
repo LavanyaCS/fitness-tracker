@@ -62,6 +62,89 @@
           "createdAt": "2025-07-14T10:45:18.098Z"
         }
       ]
+    },
+    {
+      "id": "1752733328795",
+      "name": "liyana",
+      "email": "liyanareview@example.com",
+      "password": "abcdefgh",
+      "gender": "Female",
+      "age": "30",
+      "targetSteps": "10000",
+      "totalWeight": "",
+      "targetWeight": "56",
+      "currentWeight": "70",
+      "worklogs": [
+        {
+          "date": "2025-07-16",
+          "exercise": "Running",
+          "duration": "70",
+          "notes": "running\n",
+          "id": "1752733388142"
+        },
+        {
+          "date": "2025-07-15",
+          "exercise": "Yoga",
+          "duration": "50",
+          "notes": "yoga",
+          "id": "1752733404311"
+        },
+        {
+          "date": "2025-07-14",
+          "exercise": "Strength Training",
+          "duration": "50",
+          "notes": "not",
+          "id": "1752733418411"
+        },
+        {
+          "date": "2025-07-18",
+          "exercise": "Cycling",
+          "duration": "60",
+          "notes": "cycling",
+          "id": "1752733436341"
+        }
+      ],
+      "weightlogs": [
+        {
+          "weight": "70",
+          "date": "2025-01-01",
+          "notes": "notes",
+          "id": "1752733348055"
+        },
+        {
+          "weight": "69",
+          "date": "2025-02-01",
+          "notes": "nonmmm",
+          "id": "1752733365700"
+        },
+        {
+          "weight": "72",
+          "date": "2024-11-01",
+          "notes": "no",
+          "id": "1752735537964"
+        },
+        {
+          "weight": "67",
+          "date": "2025-07-16",
+          "notes": "ui",
+          "id": "1752736105889"
+        }
+      ],
+      "goals": [
+        {
+          "id": "1752734468151",
+          "type": "Weight",
+          "target": "45",
+          "current": "56",
+          "status": "In Progress",
+          "startDate": "2025-01-01",
+          "endDate": "2026-01-01",
+          "notes": "goals",
+          "createdAt": "2025-07-17T06:41:08.151Z"
+        }
+      ],
+      "first_name": "Liyana",
+      "last_name": "S"
     }
   ]
 }

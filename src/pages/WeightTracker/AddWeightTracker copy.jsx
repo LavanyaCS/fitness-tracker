@@ -44,10 +44,10 @@ const handleSubmit = async (e) => {
       // Dispatch Redux action to update frontend state
       if (editWeightTracker) {
         dispatch(editWeightlogsAction(newLog));
-        toast.success('Weight log updated!', { position: 'top-center' });
+        toast.success('Weight log updated!', { position: 'top-right' });
       } else {
         dispatch(addWeightlogsAction(newLog));
-        toast.success('Weight log added!', { position: 'top-center' });
+        toast.success('Weight log added!', { position: 'top-right' });
       }
 
       setShowModal(false);
@@ -148,7 +148,7 @@ const handleSubmit = async (e) => {
 
                     <button
                       type="button"
-                      className="px-4 py-2 text-white bg-gray-500 rounded-lg w-fit hover:bg-gray-600"
+                      className="px-4 py-2 text-black  hover:text-white bg-gray-200 rounded-lg w-fit hover:bg-gray-600"
                       onClick={closeModal}
                     >
                       Cancel                   </button>

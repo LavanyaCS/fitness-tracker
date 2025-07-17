@@ -17,8 +17,8 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const worklogs = useSelector((state) => state.auth.user?.worklogs || []);
-  const weightlogs = useSelector((state) => state.auth.user?.weight || []);
-  const goals = useSelector((state) => state.auth.user?.goal || []);
+  const weightlogs = useSelector((state) => state.auth.user?.weightlogs || []);
+  const goals = useSelector((state) => state.auth.user?.goals || []);
 
  return (
      <div className="flex min-h-screen transition-colors duration-300 ">

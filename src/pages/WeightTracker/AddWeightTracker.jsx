@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
@@ -10,7 +10,7 @@ function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
     date: '',
     notes: ''
   });
- 
+const dispatch = useDispatch(); 
   const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
@@ -30,60 +30,72 @@ function AddWeightTracker({ editWeightTracker, setEditWeightTracker }) {
       [e.target.name]: e.target.value,
     }));
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  if (parseFloat(formWeightTracker.weight) <= 0) {
+    toast.error('Weight must be greater than 0.');
+    return;
+  }
+  if (new Date(formWeightTracker.date) > new Date()) {
+    toast.error('Date cannot be in the future.');
+    return;
+  }
 
-    if (parseFloat(formWeightTracker.weight) <= 0) {
-      toast.error('Weight must be greater than 0.');
-      return;
+  setIsLoading(true);
+  try {
+    const res = await fetch(`http://localhost:5000/users/${user.id}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch user data: ${res.status}`);
     }
-    if (new Date(formWeightTracker.date) > new Date()) {
-      toast.error('Date cannot be in the future.');
-      return;
+    const userData = await res.json();
+
+    const newLog = {
+      ...formWeightTracker,
+      id: editWeightTracker?.id || Date.now().toString(),
+    };
+
+    let updatedWeightLogs = [];
+
+    if (editWeightTracker) {
+      updatedWeightLogs = userData.weightlogs.map(log =>
+        log.id === newLog.id ? newLog : log
+      );
+    } else {
+      updatedWeightLogs = [...(userData.weightlogs || []), newLog];
     }
 
-    setIsLoading(true);
-    try {
-      const res = await fetch(`http://localhost:5000/users/${user.id}`);
-      const userData = await res.json();
+    const updatedUser = { ...userData, weightlogs: updatedWeightLogs };
 
-      const newLog = {
-        ...formWeightTracker,
-        id: editWeightTracker?.id || Date.now().toString(),
-      };
+    const updateRes = await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedUser),
+    });
 
-      let updatedWeightLogs = [];
-
-      if (editWeightTracker) {
-        updatedWeightLogs = userData.weightlogs.map(log =>
-          log.id === newLog.id ? newLog : log
-        );
-        toast.success('Weight log updated!', { position: 'top-center' });
-      } else {
-        updatedWeightLogs = [...(userData.weightlogs || []), newLog];
-        toast.success('Weight log added!', { position: 'top-center' });
-      }
-
-      const updatedUser = { ...userData, weightlogs: updatedWeightLogs };
-
-      await fetch(`http://localhost:5000/users/${user.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedUser),
-      });
-      // Update localStorage and Redux for immediate reflection in UI
-localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
-dispatch({ type: "LOGIN", payload: updatedUser });
-
-      closeModal();
-    } catch (error) {
-      console.error('Error updating weight logs:', error);
-      toast.error('Error updating weight log.');
-    } finally {
-      setIsLoading(false);
+    if (!updateRes.ok) {
+      throw new Error(`Failed to update weight log: ${updateRes.status}`);
     }
-  };
+
+    // Only show success toast after successful PUT
+    if (editWeightTracker) {
+      toast.success('Weight log updated!', { position: 'top-right' });
+    } else {
+      toast.success('Weight log added!', { position: 'top-right' });
+    }
+
+    localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
+    dispatch({ type: "LOGIN", payload: updatedUser });
+
+    closeModal();
+  } catch (error) {
+    console.error('Error updating weight logs:', error);
+    toast.error('Error updating weight log.');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const closeModal = () => {
     setShowModal(false);
@@ -176,7 +188,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                  className="px-4 py-2 text-black bg-gray-200 rounded-lg hover:text-white hover:bg-gray-600"
                 >
                   Cancel
                 </button>

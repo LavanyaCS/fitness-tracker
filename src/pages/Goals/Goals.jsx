@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddGoals from './AddGoals.jsx';
 import { deleteGoalsAction, login } from '../../redux/action.js';
-import { EllipsisVertical } from 'lucide-react';
+import { EllipsisVertical, Pencil, Trash } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 function Goals() {
@@ -27,11 +27,11 @@ function Goals() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updatedUser),
         });
-      // Update localStorage and Redux for immediate reflection in UI
-localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
-dispatch({ type: "LOGIN", payload: updatedUser });
+        // Update localStorage and Redux for immediate reflection in UI
+        localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
+        dispatch({ type: "LOGIN", payload: updatedUser });
         dispatch(login(updatedUser)); // update Redux user
-        toast.success('Goal deleted successfully!', { position: 'top-center' });
+        toast.success('Goal deleted successfully!', { position: 'top-right' });
       } catch (error) {
         console.error('Error deleting goal:', error);
         toast.error('Error deleting goal.');
@@ -117,7 +117,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                   <EllipsisVertical />
                 </button>
                 {openMenuId === goal.id && (
-                  <div className="absolute right-0 z-10 mt-2 origin-top-right bg-white border rounded-lg shadow w-28 p-2">
+                  <div className="absolute right-0 z-10 w-32 p-1 mt-2 origin-top-right bg-white rounded-lg shadow top-4">
                     <button
                       onClick={() => {
                         setEditGoals(goal);
@@ -125,14 +125,15 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                       }}
                       className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
                     >
-                      Edit
+                      <Pencil className="inline-block w-4 h-4 mr-1" />   Edit
                     </button>
                     <button
                       onClick={() => handleDelete(goal.id)}
-                      className="w-full px-4 py-2 text-sm text-left text-red-600 hover:bg-gray-50"
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
                     >
-                      Delete
+                      <Trash className="inline-block w-4 h-4 mr-1" />  Delete
                     </button>
+
                   </div>
                 )}
               </div>

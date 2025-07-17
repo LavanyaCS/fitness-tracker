@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddGoals from './AddGoals.jsx';
 import { deleteGoalsAction } from '../../redux/action.js';
-import { EllipsisVertical } from 'lucide-react';
+import { EllipsisVertical, Pencil, Trash } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 function Goals() {
@@ -17,7 +17,7 @@ function Goals() {
     if (window.confirm('Are you sure you want to delete this goal?')) {
       try {
         await dispatch(deleteGoalsAction(id));
-        toast.success('Goal deleted successfully!', { position: 'top-center' });
+        toast.success('Goal deleted successfully!', { position: 'top-right' });
       } catch (error) {
         console.error('Error deleting goal:', error);
         toast.error('Error deleting goal.');
@@ -101,7 +101,7 @@ function Goals() {
                   <EllipsisVertical />
                 </button>
                 {openMenuId === goal.id && (
-                  <div className="absolute right-0 z-10 mt-2 origin-top-right bg-white border rounded-lg shadow w-28 p-2">
+                  <div className="absolute right-0 z-10 p-1 mt-2 origin-top-right bg-white rounded-lg shadow w-32">
                     <button
                       onClick={() => {
                         setEditGoals(goal);
@@ -109,13 +109,14 @@ function Goals() {
                       }}
                       className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
                     >
-                      Edit
+                      <Pencil className="inline-block w-4 h-4 mr-1" />   Edit
                     </button>
                     <button
                       onClick={() => handleDelete(goal.id)}
-                      className="w-full px-4 py-2 text-sm text-left text-red-600 hover:bg-gray-50"
-                    >
-                      Delete
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                        >
+                        <Trash className="inline-block w-4 h-4 mr-1" />  Delete
+                       
                     </button>
                   </div>
                 )}

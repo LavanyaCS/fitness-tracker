@@ -10,6 +10,8 @@ function Profile() {
 
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
+    first_name:'',
+    last_name:'',
     gender: '',
     age: '',
     targetSteps: '',
@@ -25,6 +27,8 @@ function Profile() {
   useEffect(() => {
     if (user) {
       setFormData({
+        first_name: user.first_name || '',
+        last_name: user.last_name || '',
         gender: user.gender || '',
         age: user.age || '',
         targetSteps: user.targetSteps || '',
@@ -49,6 +53,8 @@ function Profile() {
       dispatch(login(editdUser));
       setShowModal(false);
       setFormData({
+        first_name:'',
+        last_name:'',
         gender: '',
         age: '',
         targetSteps: '',
@@ -67,7 +73,14 @@ function Profile() {
         <div className="flex flex-col gap-4 md:flex-row md:items-start">
           <div className="flex items-center justify-center w-16 h-16 text-xl font-bold text-white bg-gray-800 rounded-full">{initials}</div>
           <div className="flex flex-col gap-1">
-            <p className="text-lg font-medium">{user?.name}</p>
+            <p className="text-lg font-medium">
+  {user?.first_name && user?.last_name
+    ? `${user.first_name} ${user.last_name}`
+    : user?.name
+  }
+</p>
+
+
             <p className="text-sm text-gray-600">{user?.email}</p>
           </div>
         </div>
@@ -83,20 +96,47 @@ function Profile() {
         </div>
       </div>
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black bg-opacity-30" onClick={() => setShowModal(false)}>
+          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center h-screen px-4 text-center bg-center bg-cover " onClick={() => setShowModal(false)}>
           <div className="relative w-full max-w-2xl p-6 bg-white rounded-lg shadow-md" onClick={(e) => e.stopPropagation()}>
             <span className="flex justify-start text-xl font-medium text-gray-900">Edit Profile</span>
             <button onClick={() => setShowModal(false)} className="absolute text-2xl text-gray-500 top-2 right-2 hover:text-black">&times;</button>
-            <form onSubmit={handleSubmit} className="mt-4 space-y-4">
-              <input type="number" placeholder="Age" className="w-full p-2 border rounded" value={formData.age} onChange={(e) => setFormData({ ...formData, age: e.target.value })} required />
-              <select className="w-full p-2 border rounded" value={formData.gender} onChange={(e) => setFormData({ ...formData, gender: e.target.value })} required>
-                <option value="">Select Gender</option>
-                {genderOptions.map((gender) => (<option key={gender} value={gender}>{gender}</option>))}
-              </select>
-              <input type="text" placeholder="Target Steps" className="w-full p-2 border rounded" value={formData.targetSteps} onChange={(e) => setFormData({ ...formData, targetSteps: e.target.value })} required />
-              <input type="text" placeholder="Total Weight" className="w-full p-2 border rounded" value={formData.currentWeight} onChange={(e) => setFormData({ ...formData, currentWeight: e.target.value })} />
-              <input type="text" placeholder="Target Weight" className="w-full p-2 border rounded" value={formData.targetWeight} onChange={(e) => setFormData({ ...formData, targetWeight: e.target.value })} />
-              <div className="flex justify-end">
+            <form onSubmit={handleSubmit} className="grid grid-cols-2 mt-4 space-y-4 gap-x-4">
+              <div>
+                <label htmlFor='first_name' className="block text-sm font-medium text-left text-gray-700">First Name</label>
+
+                <input type="text" placeholder="Enter a first name" className="w-full p-2 border rounded" value={formData.first_name} onChange={(e) => setFormData({ ...formData, first_name: e.target.value })} />
+              </div>
+              <div>
+                <label htmlFor='last_name' className="block text-sm font-medium text-left text-gray-700">Last Name</label>
+
+                <input type="text" placeholder="Enter a last name" className="w-full p-2 border rounded" value={formData.last_name} onChange={(e) => setFormData({ ...formData, last_name: e.target.value })} />
+              </div>
+
+              <div>
+                <label htmlFor='age' className="block text-sm font-medium text-left text-gray-700">Age</label>
+                <input type="number" placeholder="Age" className="w-full p-2 border rounded" value={formData.age} onChange={(e) => setFormData({ ...formData, age: e.target.value })} required /></div>
+              <div>
+                <label htmlFor='date' className="block text-sm font-medium text-left text-gray-700">Gender</label>
+
+                <select className="w-full p-2 border rounded" value={formData.gender} onChange={(e) => setFormData({ ...formData, gender: e.target.value })} required>
+                  <option value="">Select Gender</option>
+                  {genderOptions.map((gender) => (<option key={gender} value={gender}>{gender}</option>))}
+                </select></div> <div>
+                <label htmlFor='date' className="block text-sm font-medium text-left text-gray-700">Target Steps</label>
+
+                <input type="text" placeholder="Target Steps" className="w-full p-2 border rounded" value={formData.targetSteps} onChange={(e) => setFormData({ ...formData, targetSteps: e.target.value })} required />
+              </div>
+              <div>
+                <label htmlFor='date' className="block text-sm font-medium text-left text-gray-700">Total Weight</label>
+
+                <input type="text" placeholder="Total Weight" className="w-full p-2 border rounded" value={formData.currentWeight} onChange={(e) => setFormData({ ...formData, currentWeight: e.target.value })} />
+              </div>
+              <div>
+                <label htmlFor='date' className="block text-sm font-medium text-left text-gray-700">Target Weight</label>
+
+                <input type="text" placeholder="Target Weight" className="w-full p-2 border rounded" value={formData.targetWeight} onChange={(e) => setFormData({ ...formData, targetWeight: e.target.value })} />
+              </div>
+              <div className="flex justify-end col-span-2">
                 <button type="submit" className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-600">Edit Details</button>
               </div>
             </form>

@@ -77,10 +77,10 @@ function AddGoals({ editGoals, setEditGoals }) {
     try {
       if (editGoals) {
         await dispatch(editGoalsAction(goalPayload));
-        toast.success('Goal updated!', { position: 'top-center' });
+        toast.success('Goal updated!', { position: 'top-right' });
       } else {
         await dispatch(addGoalsAction(goalPayload));
-        toast.success('Goal added!', { position: 'top-center' });
+        toast.success('Goal added!', { position: 'top-right' });
       }
       closeModal();
     } catch (error) {
@@ -221,7 +221,7 @@ function AddGoals({ editGoals, setEditGoals }) {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                  className="px-4 py-2 text-black  hover:text-white bg-gray-200 rounded-lg hover:bg-gray-600"
                 >
                   Cancel
                 </button>

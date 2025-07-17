@@ -80,10 +80,10 @@ function AddGoals({ editGoals, setEditGoals }) {
         updatedGoals = userData.goals.map((log) =>
           log.id === newGoal.id ? newGoal : log
         );
-        toast.success('Goal updated!', { position: 'top-center' });
+        toast.success('Goal updated!', { position: 'top-right' });
       } else {
         updatedGoals = [...(userData.goals || []), newGoal];
-        toast.success('Goal added!', { position: 'top-center' });
+        toast.success('Goal added!', { position: 'top-right' });
       }
 
       const updatedUser = { ...userData, goals: updatedGoals };
@@ -235,7 +235,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                  className="px-4 py-2 text-black  hover:text-white bg-gray-200 rounded-lg hover:bg-gray-600"
                 >
                   Cancel
                 </button>

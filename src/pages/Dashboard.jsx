@@ -21,8 +21,8 @@ function Dashboard() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const worklogs = useSelector((state) => state.auth.user?.worklogs || []);
-  const weightlogs = useSelector((state) => state.auth.user?.weight || []);
-  const goals = useSelector((state) => state.auth.user?.goal || []);
+const weightlogs = useSelector((state) => state.auth.user?.weightlogs || []);
+  const goals = useSelector((state) => state.auth.user?.goals || []);
 
   const totalDuration = worklogs.reduce((sum, log) => sum + parseInt(log.duration || 0, 10), 0);
   const totalWorkouts = worklogs.length;
@@ -60,7 +60,9 @@ function Dashboard() {
 
   return (
     <div className="w-full max-w-5xl p-6 mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Welcome {user?.name || 'User'}</h1>
+      <h1 className="text-2xl font-bold">Welcome  {user?.first_name && user?.last_name
+    ? `${user.first_name} ${user.last_name}`
+    : user?.name }</h1>
 
       <div className="p-4 mt-4 text-center text-gray-800 transition bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
         <p className="text-lg italic">"{quote}"</p>

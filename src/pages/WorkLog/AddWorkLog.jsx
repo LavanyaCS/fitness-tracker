@@ -55,10 +55,10 @@ const handleSubmit = async (e) => {
       updatedWorkLogs = userData.worklogs.map(log =>
         log.id === newLog.id ? newLog : log
       );
-      toast.success('Work log updated!', { position: 'top-center' });
+      toast.success('Work log updated!', { position: 'top-right' });
     } else {
       updatedWorkLogs = [...(userData.worklogs || []), newLog];
-      toast.success('Work log added!', { position: 'top-center' });
+      toast.success('Work log added!', { position: 'top-right' });
     }
 
     const updatedUser = { ...userData, worklogs: updatedWorkLogs };
@@ -186,7 +186,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-white bg-gray-500 rounded-lg w-fit hover:bg-gray-600"
+                  className="px-4 py-2 text-black bg-gray-200 rounded-lg hover:text-white w-fit hover:bg-gray-600"
                 >
                   Cancel
                 </button>

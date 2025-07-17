@@ -24,7 +24,7 @@ function Sidebarmenu() {
       > <X size={20} /> 
       </button> :
       <button
-        className="fixed z-50 p-2 text-gray-800 bg-gray-100 rounded-lg dark:text-white dark:bg-gray-900 lg:hidden top-4 left-4"
+        className="fixed z-50 p-2 text-gray-800 bg-gray-100 rounded-lg dark:text-white dark:bg-gray-900 lg:hidden top-4 right-4"
         onClick={toggleSidebar}
       ><Menu size={20} />
       </button>
