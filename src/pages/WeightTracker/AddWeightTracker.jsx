@@ -189,7 +189,7 @@ const handleSubmit = async (e) => {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-black bg-gray-200 rounded-lg hover:text-white hover:bg-gray-600"
+                  className="px-4 py-2 text-black bg-gray-200 rounded-lg  hover:text-white hover:bg-gray-600"
                 >
                   Cancel
                 </button>
