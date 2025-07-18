@@ -9,7 +9,7 @@ function Sidebarmenu() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const hideSidebar = ['/login', '/signup', '/not-found', '*','/'].includes(location.pathname);
+  const hideSidebar = ['/login', '/signup', '/not-found','/','*'].includes(location.pathname);
 
   if (hideSidebar || !user) return null;
 

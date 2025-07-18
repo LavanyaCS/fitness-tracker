@@ -62,7 +62,7 @@ function LoginForm() {
         {showPassword ? (<EyeOff />) : (<Eye />)}
         </span>
         </div>
-        <button type="submit" className="w-full py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800">
+        <button  className="w-full py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800">
           Login
         </button>
         <p className="text-sm text-center text-black">

@@ -1,5 +1,6 @@
 import React from 'react';
 import NotFoundImage from '../assets/page-not-found.png'; // ✅ correct default import
+import { Link } from 'react-router-dom';
 
 function NotFound() {
   return (
@@ -9,14 +10,13 @@ function NotFound() {
       <p className="mb-4 text-gray-500 dark:text-gray-300">
         The page you are looking for doesn't exist or has been moved.
       </p>
-      <a
-        href="/"
+      <Link  to="/dashboard"
         className="px-6 py-2 text-white transition bg-gray-800 rounded hover:bg-gray-900"
       >
         Go Home
-      </a>
+      </Link>
     </div>
-  );
+  )
 }
 
 export default NotFound;

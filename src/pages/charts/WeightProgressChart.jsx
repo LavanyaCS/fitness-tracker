@@ -11,7 +11,7 @@ const WeightProgressChart = ({ weightLogs }) => {
 
     const options = {
         chart: { id: "weight-progress" },
-        xaxis: { type: 'category', title: { text: 'Date' } },
+        xaxis: { type: 'datetime', title: { text: 'Date' } },
         yaxis: { title: { text: 'Weight (kg)' } },
         title: { text: "Weight Progress", align: "center" }
     };

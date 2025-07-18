@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addWorklogsAction, editWorklogsAction } from '../../redux/action';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Plus } from 'lucide-react';
 
 function AddWorkLog({ editWorkLogs, setEditWorkLogs }) {
   const user = useSelector((state) => state.auth.user);
@@ -55,10 +56,10 @@ const handleSubmit = async (e) => {
       updatedWorkLogs = userData.worklogs.map(log =>
         log.id === newLog.id ? newLog : log
       );
-      toast.success('Work log updated!', { position: 'top-right' });
+      toast.success('Work log updated!');
     } else {
       updatedWorkLogs = [...(userData.worklogs || []), newLog];
-      toast.success('Work log added!', { position: 'top-right' });
+      toast.success('Work log added!');
     }
 
     const updatedUser = { ...userData, worklogs: updatedWorkLogs };
@@ -93,9 +94,9 @@ dispatch({ type: "LOGIN", payload: updatedUser });
     <div className="relative w-full">
       <button
         onClick={() => setShowModal(true)}
-        className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+        className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
       >
-        + Add Log
+        <Plus className="inline-block w-4 h-4 mr-1" /> Add Log
       </button>
       {showModal && (
         <div
@@ -103,7 +104,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
           onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-2xl px-6 py-4 bg-white border rounded-lg shadow-md backdrop-blur-md border-gray-500/30"
+            className="relative w-full max-w-2xl px-6 py-4 transition-all duration-300 transform scale-95 bg-white border rounded-lg shadow-md opacity-0 backdrop-blur-md border-gray-500/30 animate-fadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-xl font-medium text-gray-900">

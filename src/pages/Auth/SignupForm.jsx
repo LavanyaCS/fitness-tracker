@@ -67,7 +67,7 @@ function SignupForm() {
           <label htmlFor="password" className="block mb-1 text-sm font-medium text-left text-black">Password</label>
           <input type="password" placeholder="Password" className="w-full p-2 border rounded"
             value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <button type="submit" className="w-full py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800">Register</button>
+          <button  className="w-full py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800">Register</button>
           <p className="text-sm text-center text-black">
             Already have an account?{' '}
             <Link to="/" className="font-semibold hover:underline">

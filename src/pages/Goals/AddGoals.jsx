@@ -1,12 +1,13 @@
+import { Plus } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 function AddGoals({ editGoals, setEditGoals }) {
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.auth.user);
-
+const dispatch = useDispatch();
   const [formGoals, setFormGoals] = useState({
     id: '',
     type: '',
@@ -80,22 +81,25 @@ function AddGoals({ editGoals, setEditGoals }) {
         updatedGoals = userData.goals.map((log) =>
           log.id === newGoal.id ? newGoal : log
         );
-        toast.success('Goal updated!', { position: 'top-right' });
+        toast.success('Goal updated!');
       } else {
         updatedGoals = [...(userData.goals || []), newGoal];
-        toast.success('Goal added!', { position: 'top-right' });
+        toast.success('Goal added!');
       }
 
       const updatedUser = { ...userData, goals: updatedGoals };
 
-      await fetch(`http://localhost:5000/users/${user.id}`, {
+      const updateRes = await fetch(`http://localhost:5000/users/${user.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedUser),
       });
+      if (!updateRes.ok) {
+        throw new Error(`Failed to update Goal: ${updateRes.status}`);
+      }
       // Update localStorage and Redux for immediate reflection in UI
-localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
-dispatch({ type: "LOGIN", payload: updatedUser });
+      localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
+      dispatch({ type: "LOGIN", payload: updatedUser });
       closeModal();
     } catch (error) {
       console.error('Error saving goal:', error);
@@ -109,9 +113,9 @@ dispatch({ type: "LOGIN", payload: updatedUser });
     <div className="flex justify-end w-full">
       <button
         onClick={() => setShowModal(true)}
-        className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+        className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
       >
-        + Add Goal
+        <Plus className="inline-block w-4 h-4 mr-1" />  Add Goal
       </button>
 
       {showModal && (
@@ -120,7 +124,7 @@ dispatch({ type: "LOGIN", payload: updatedUser });
           onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-2xl px-6 py-4 bg-white border rounded-lg shadow-md backdrop-blur-md border-gray-500/30"
+            className="relative w-full max-w-2xl px-6 py-4 transition-all duration-300 transform scale-95 bg-white border rounded-lg shadow-md opacity-0 backdrop-blur-md border-gray-500/30 animate-fadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-xl font-medium text-gray-900">
@@ -226,16 +230,15 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`px-4 py-2 text-white rounded-lg ${
-                    isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'
-                  }`}
+                  className={`px-4 py-2 text-white rounded-lg ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-800 hover:bg-gray-700'
+                    }`}
                 >
                   {isLoading ? 'Saving...' : editGoals ? 'Update' : 'Add'}
                 </button>
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-black  hover:text-white bg-gray-200 rounded-lg hover:bg-gray-600"
+                  className="px-4 py-2 text-black bg-gray-200 rounded-lg hover:text-white hover:bg-gray-600"
                 >
                   Cancel
                 </button>

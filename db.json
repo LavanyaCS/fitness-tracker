@@ -145,6 +145,115 @@
       ],
       "first_name": "Liyana",
       "last_name": "S"
+    },
+    {
+      "id": "1752814748208",
+      "name": "lavanya cs",
+      "email": "lavanyacs@gmail.com",
+      "password": "la52S$shyam",
+      "gender": "",
+      "age": "",
+      "targetSteps": "",
+      "totalWeight": "",
+      "targetWeight": "",
+      "currentWeight": "",
+      "worklogs": [],
+      "weightlogs": [
+        {
+          "weight": "60",
+          "date": "2025-01-01",
+          "notes": "Notes 60",
+          "id": "1752814766772"
+        },
+        {
+          "weight": "55",
+          "date": "2025-02-01",
+          "notes": "Notes 55",
+          "id": "1752814779746"
+        },
+        {
+          "weight": "57",
+          "date": "2025-03-01",
+          "notes": "notes 57",
+          "id": "1752814793053"
+        },
+        {
+          "weight": "54",
+          "date": "2025-04-01",
+          "notes": "notes 54",
+          "id": "1752814806378"
+        }
+      ],
+      "goals": []
+    },
+    {
+      "id": "1752815314772",
+      "name": "Liyana",
+      "email": "liyanareview4@example.com",
+      "password": "abcdefgh",
+      "gender": "Female",
+      "age": "30",
+      "targetSteps": "60000",
+      "totalWeight": "",
+      "targetWeight": "43",
+      "currentWeight": "50",
+      "worklogs": [
+        {
+          "date": "2025-07-02",
+          "exercise": "Running",
+          "duration": "45",
+          "notes": "notes 45",
+          "id": "1752815526206"
+        },
+        {
+          "date": "2025-07-11",
+          "exercise": "Swimming",
+          "duration": "45",
+          "notes": "45",
+          "id": "1752815538164"
+        }
+      ],
+      "weightlogs": [
+        {
+          "weight": "45",
+          "date": "2025-01-01",
+          "notes": "notes 45",
+          "id": "1752815399999"
+        },
+        {
+          "weight": "50",
+          "date": "2024-12-01",
+          "notes": "not",
+          "id": "1752815979947"
+        },
+        {
+          "weight": "56",
+          "date": "2024-11-01",
+          "notes": "nov",
+          "id": "1752820013966"
+        },
+        {
+          "weight": "56",
+          "date": "2024-01-01",
+          "notes": "Jan",
+          "id": "1752820051790"
+        }
+      ],
+      "goals": [
+        {
+          "id": "1752815595488",
+          "type": "Weight",
+          "target": "43",
+          "current": "50",
+          "status": "In Progress",
+          "startDate": "2025-01-01",
+          "endDate": "2026-01-02",
+          "notes": "ddd",
+          "createdAt": "2025-07-18T05:13:15.488Z"
+        }
+      ],
+      "first_name": "Liyana",
+      "last_name": "Shyam"
     }
   ]
 }

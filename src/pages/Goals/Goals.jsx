@@ -31,7 +31,7 @@ function Goals() {
         localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
         dispatch({ type: "LOGIN", payload: updatedUser });
         dispatch(login(updatedUser)); // update Redux user
-        toast.success('Goal deleted successfully!', { position: 'top-right' });
+        toast.success('Goal deleted successfully!');
       } catch (error) {
         console.error('Error deleting goal:', error);
         toast.error('Error deleting goal.');
@@ -123,13 +123,13 @@ function Goals() {
                         setEditGoals(goal);
                         setOpenMenuId(null);
                       }}
-                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                     >
                       <Pencil className="inline-block w-4 h-4 mr-1" />   Edit
                     </button>
                     <button
                       onClick={() => handleDelete(goal.id)}
-                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                     >
                       <Trash className="inline-block w-4 h-4 mr-1" />  Delete
                     </button>

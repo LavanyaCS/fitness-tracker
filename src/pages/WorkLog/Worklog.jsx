@@ -8,7 +8,7 @@ import {
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import AddWorkLog from './AddWorkLog';
-import { EllipsisVertical, Pencil, Trash } from 'lucide-react';
+import { CircleX, EllipsisVertical, Funnel, Pencil, Trash } from 'lucide-react';
 
 function Worklog() {
   const dispatch = useDispatch();
@@ -58,9 +58,9 @@ function Worklog() {
           {isDateSelected && (
            <div className="relative w-full"> <button
               onClick={() => setIsDateSelected(false)}
-              className="px-4 py-2 text-black bg-gray-200 rounded-lg dark:bg-gray-300 hover:text-white w-fit hover:bg-gray-600"
+              className="flex items-center px-4 py-2 text-black bg-gray-200 rounded-lg dark:bg-gray-300 hover:text-white w-fit hover:bg-gray-600"
             >
-              Clear Filter
+             <CircleX className="inline-block w-4 h-4 mr-1" /> Clear Filter
             </button></div>
           )}
 
@@ -68,9 +68,10 @@ function Worklog() {
           <div className="relative w-full">
             <button
               onClick={() => setIsCalendarOpen((prev) => !prev)}
-              className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+              className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
             >
-              Filter by Date
+              
+                       <Funnel className="inline-block w-4 h-4 mr-1" /> Filter by Date
             </button>
 
             {isCalendarOpen && (
@@ -139,12 +140,12 @@ function Worklog() {
                     </button>
 
                     {openMenuId === log.id && (
-                  <div className="absolute right-0 z-10 p-1 mt-2 origin-top-right bg-white rounded-lg shadow w-32">                        <button
+                  <div className="absolute right-0 z-10 w-32 p-1 mt-2 origin-top-right bg-white rounded-lg shadow">                        <button
                           onClick={() => {
                             setEditWorkLogs(log);
                             setOpenMenuId(null);
                           }}
-                          className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                          className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                         >
                        <Pencil className="inline-block w-4 h-4 mr-1" />   Edit
                         </button>
@@ -153,7 +154,7 @@ function Worklog() {
                             dispatch(deleteWorklogsAction(log.id));
                             setOpenMenuId(null);
                           }}
-                          className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                          className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                         >
                         <Trash className="inline-block w-4 h-4 mr-1" />  Delete
                         </button>

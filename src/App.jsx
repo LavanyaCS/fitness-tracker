@@ -1,4 +1,4 @@
-import { Link, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Dashboard from './pages/Dashboard';
@@ -8,66 +8,114 @@ import Goals from './pages/Goals/Goals';
 import Profile from './pages/Profile';
 import Logout from './pages/Auth/Logout';
 import Sidebarmenu from './components/Sidebarmenu';
+import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadWeightlogsAction } from './redux/action';
-import NotFound from './pages/NotFound';
+import { useSelector } from 'react-redux';
+
 function App() {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const worklogs = useSelector((state) => state.auth.user?.worklogs || []);
-  const weightlogs = useSelector((state) => state.auth.user?.weightlogs || []);
-  const goals = useSelector((state) => state.auth.user?.goals || []);
 
- return (
-     <div className="flex min-h-screen transition-colors duration-300 ">
-     {/* <Thememode  /> */}
-      <Sidebarmenu />
+  return (
+    <div>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/sign-up" element={<SignupForm />} />
 
-      {/* Main Content */}
-      <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
-           
-          
-  <Routes>
-   {/* Public routes */}
-    <Route path="/" element={<LoginForm />} />
-    <Route path="/sign-up" element={<SignupForm />} />
-        <Route path="*" element={<NotFound />} />
+        {/* Protected routes with sidebar */}
+        {user && (
+          <>
+            <Route
+              path="/dashboard"
+              element={
+                <div className="flex min-h-screen">
+                  <Sidebarmenu />
+                  <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
+                    <Dashboard />
+                  </main>
+                </div>
+              }
+            />
+            <Route
+              path="/work-log"
+              element={
+                <div className="flex min-h-screen">
+                  <Sidebarmenu />
+                  <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
+                    <Worklog />
+                  </main>
+                </div>
+              }
+            />
+            <Route
+              path="/weight-tracker"
+              element={
+                <div className="flex min-h-screen">
+                  <Sidebarmenu />
+                  <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
+                    <Weighttracker />
+                  </main>
+                </div>
+              }
+            />
+            <Route
+              path="/goals"
+              element={
+                <div className="flex min-h-screen">
+                  <Sidebarmenu />
+                  <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
+                    <Goals />
+                  </main>
+                </div>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <div className="flex min-h-screen">
+                  <Sidebarmenu />
+                  <main className="flex-1 h-screen overflow-y-auto text-black bg-gray-50 dark:bg-gray-200 dark:text-gray-900">
+                    <Profile />
+                  </main>
+                </div>
+              }
+            />
+            <Route path="/logout" element={<Logout />} />
+          </>
+        )}
 
-  {/* Protected routes */}
-    {user ? (
-    <> {/* to group multiple protected routes */}
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/work-log" element={<Worklog />} />
-    <Route path="/weight-tracker" element={<Weighttracker />} />
-    <Route path="/goals" element={<Goals />} />
-    <Route path="/profile" element={<Profile />} />
-    <Route path="/logout" element={<Logout />} />
-      </>) :
-       (
-    <>
-              <Route
-                path="*"
-                element={
-                  <div className="mt-10 text-center text-gray-600">
-                    Please log in to view your worklog.
-                    <p className="text-sm text-center">
-                      <Link to="/" className="text-gray-600 hover:underline">
-                        Login
-                      </Link>
-                    </p>
-                  </div>
-                }
-              />
-      </>    
-          )}
-            </Routes>
-  <ToastContainer position="top-right" autoClose={3000} />
-          </main>
+        {/* NotFound route (no sidebar) */}
+        <Route
+          path="*"
+          element={
+            user ? (
+              <NotFound />
+            ) : (
+              <div className="flex flex-col items-center justify-center h-screen px-4 bg-gray-100 dark:bg-gray-900">
+                <div className="w-full max-w-md p-8 text-center bg-white shadow-lg dark:bg-gray-800 rounded-xl">
+                  <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-white">
+                    Access Restricted
+                  </h2>
+                  <p className="mb-6 text-gray-600 dark:text-gray-300">
+                    Please log in to view your FitTracker.
+                  </p>
+                  <Link
+                    to="/"
+                    className="inline-block px-6 py-2 font-medium text-white transition bg-gray-600 rounded hover:bg-gray-700"
+                  >
+                    Go to Login
+                  </Link>
+                </div>
+              </div>
+            )
+          }
+        />
+      </Routes>
 
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
-  )
+  );
 }
-export default App
+
+export default App;

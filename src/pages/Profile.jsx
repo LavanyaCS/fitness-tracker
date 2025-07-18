@@ -97,7 +97,7 @@ function Profile() {
       </div>
       {showModal && (
           <div className="fixed inset-0 z-50 flex flex-col items-center justify-center h-screen px-4 text-center bg-center bg-cover " onClick={() => setShowModal(false)}>
-          <div className="relative w-full max-w-2xl p-6 bg-white rounded-lg shadow-md" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-2xl px-6 py-4 transition-all duration-300 transform scale-95 bg-white border rounded-lg shadow-md opacity-0 backdrop-blur-md border-gray-500/30 animate-fadeIn" onClick={(e) => e.stopPropagation()}>
             <span className="flex justify-start text-xl font-medium text-gray-900">Edit Profile</span>
             <button onClick={() => setShowModal(false)} className="absolute text-2xl text-gray-500 top-2 right-2 hover:text-black">&times;</button>
             <form onSubmit={handleSubmit} className="grid grid-cols-2 mt-4 space-y-4 gap-x-4">
@@ -137,7 +137,7 @@ function Profile() {
                 <input type="text" placeholder="Target Weight" className="w-full p-2 border rounded" value={formData.targetWeight} onChange={(e) => setFormData({ ...formData, targetWeight: e.target.value })} />
               </div>
               <div className="flex justify-end col-span-2">
-                <button type="submit" className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-600">Edit Details</button>
+                <button type="submit"  className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-600">Edit Details</button>
               </div>
             </form>
           </div>

@@ -13,7 +13,7 @@ function WeightTracker() {
   const [editWeightTracker, setEditWeightTracker] = useState(null);
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this goal?')) {
+    if (window.confirm('Are you sure you want to delete this Weight?')) {
       try {
         const res = await fetch(`http://localhost:5000/users/${user.id}`);
         const userData = await res.json();
@@ -30,10 +30,10 @@ function WeightTracker() {
 localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
 dispatch({ type: "LOGIN", payload: updatedUser });
         dispatch(login(updatedUser)); // update Redux user
-        toast.success('Goal deleted successfully!', { position: 'top-right' });
+        toast.success('Weight deleted successfully!');
       } catch (error) {
-        console.error('Error deleting goal:', error);
-        toast.error('Error deleting goal.');
+        console.error('Error deleting Weight:', error);
+        toast.error('Error deleting Weight.');
       }
       setOpenMenuId(null);
     }
@@ -86,19 +86,19 @@ dispatch({ type: "LOGIN", payload: updatedUser });
                   <EllipsisVertical />
                 </button>
                 {openMenuId === data.id && (
-                  <div className="absolute right-0 z-10 p-1 mt-2 origin-top-right bg-white rounded-lg shadow w-32">
+                  <div className="absolute right-0 z-10 w-32 p-1 mt-2 origin-top-right bg-white rounded-lg shadow">
                     <button
                       onClick={() => {
                         setEditWeightTracker(data);
                         setOpenMenuId(null);
                       }}
-                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                     >
                       <Pencil className="inline-block w-4 h-4 mr-1" />   Edit
                     </button>
                     <button
                       onClick={() => handleDelete(data.id)}
-                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50"
+                      className="w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
                         >
                         <Trash className="inline-block w-4 h-4 mr-1" />  Delete
                         </button>

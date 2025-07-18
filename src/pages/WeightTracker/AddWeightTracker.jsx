@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -79,9 +80,9 @@ const handleSubmit = async (e) => {
 
     // Only show success toast after successful PUT
     if (editWeightTracker) {
-      toast.success('Weight log updated!', { position: 'top-right' });
+      toast.success('Weight log updated!');
     } else {
-      toast.success('Weight log added!', { position: 'top-right' });
+      toast.success('Weight log added!');
     }
 
     localStorage.setItem('fitnessUser', JSON.stringify(updatedUser));
@@ -107,18 +108,18 @@ const handleSubmit = async (e) => {
     <div className="flex justify-end w-full">
       <button
         onClick={() => setShowModal(true)}
-        className="px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
+        className="flex items-center px-4 py-2 text-white bg-gray-800 rounded-lg hover:bg-gray-700"
       >
-        + Add Weight
+        <Plus className="inline-block w-4 h-4 mr-1" />  Add Weight
       </button>
 
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/30"
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/30"
           onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-2xl p-6 bg-white rounded-lg shadow-md"
+            className="relative w-full max-w-2xl px-6 py-4 transition-all duration-300 transform scale-95 bg-white border rounded-lg shadow-md opacity-0 backdrop-blur-md border-gray-500/30 animate-fadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-xl font-semibold">
