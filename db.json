@@ -184,7 +184,19 @@
           "id": "1752814806378"
         }
       ],
-      "goals": []
+      "goals": [
+        {
+          "id": "1752821982844",
+          "type": "Weight",
+          "target": "67",
+          "current": "78",
+          "status": "Completed",
+          "startDate": "2024-01-01",
+          "endDate": "2025-01-01",
+          "notes": "",
+          "createdAt": "2025-07-18T06:59:42.844Z"
+        }
+      ]
     },
     {
       "id": "1752815314772",
