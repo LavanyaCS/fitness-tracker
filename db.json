@@ -266,6 +266,83 @@
       ],
       "first_name": "Liyana",
       "last_name": "Shyam"
+    },
+    {
+      "id": "1753172558384",
+      "name": "lavany",
+      "email": "slavanyacs@gmail.com",
+      "password": "la52S$shyam",
+      "gender": "Female",
+      "age": "30",
+      "targetSteps": "9000",
+      "totalWeight": "",
+      "targetWeight": "45",
+      "currentWeight": "60",
+      "worklogs": [
+        {
+          "date": "2025-01-01",
+          "exercise": "Cycling",
+          "duration": "34",
+          "notes": "34",
+          "id": "1753172630166"
+        },
+        {
+          "date": "2025-07-01",
+          "exercise": "Cycling",
+          "duration": "45",
+          "notes": "4",
+          "id": "1753172649030"
+        },
+        {
+          "date": "2025-07-22",
+          "exercise": "Yoga",
+          "duration": "43",
+          "notes": "43",
+          "id": "1753172661917"
+        },
+        {
+          "date": "2025-07-23",
+          "exercise": "Cycling",
+          "duration": "32",
+          "notes": "32",
+          "id": "1753172676681"
+        }
+      ],
+      "weightlogs": [
+        {
+          "weight": "45",
+          "date": "2025-01-01",
+          "notes": "45",
+          "id": "1753172584118"
+        },
+        {
+          "weight": "43",
+          "date": "2025-02-01",
+          "notes": "43",
+          "id": "1753172595621"
+        },
+        {
+          "weight": "44.5",
+          "date": "2025-03-01",
+          "notes": "44.5",
+          "id": "1753172606918"
+        }
+      ],
+      "goals": [
+        {
+          "id": "1753172704215",
+          "type": "Weight",
+          "target": "40",
+          "current": "60",
+          "status": "Completed",
+          "startDate": "2025-01-01",
+          "endDate": "2025-08-01",
+          "notes": "com",
+          "createdAt": "2025-07-22T08:25:04.215Z"
+        }
+      ],
+      "first_name": "Liyana",
+      "last_name": "S"
     }
   ]
 }
